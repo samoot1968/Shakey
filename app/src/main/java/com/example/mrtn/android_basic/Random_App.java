@@ -1,12 +1,22 @@
 package com.example.mrtn.android_basic;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 public class Random_App extends ActionBarActivity {
+
+    static int randRange(int bottom, int top) { //funtksioon mis tagastab long tüüpi muutuja
+        int juhuarv = (int) (Math.round(Math.random() * (top - bottom)) + bottom);
+        return juhuarv;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +31,29 @@ public class Random_App extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_random__app, menu);
         return true;
     }
+    public void buttonOnClick(View view) {
+
+        String [] coin = {"kull", "kiri"};
+        Button button = (Button) view;
+        ((Button) view).setText(coin[randRange(0,1)]);
+
+        TextView textView = (TextView)findViewById(R.id.textView2);
+        textView.setText("MÜNT MAANDUB KÜLJELE ... " + coin[randRange(0,1)]);
+
+        RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.taust);
+        relativeLayout.setBackgroundColor(Color.rgb(randRange(0, 255), randRange(0, 255), randRange(0, 255)));
+    }
+
+
+
+
+//    public void addTextToList(String s) {
+//
+//
+//        .setText(coin[randRange(0,1)]);
+//
+//
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
